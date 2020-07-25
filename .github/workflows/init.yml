@@ -10,6 +10,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build web
       run: |
+        sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+        sudo apt-get -y update
         git clone https://gitlab.gnome.org/GNOME/epiphany.git
         cd epiphany
         sudo apt-get build-dep -y epiphany-browser 
