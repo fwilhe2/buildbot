@@ -2,16 +2,19 @@
 name: CI
 on:
   push:
-    branches: main
-  pull_request:
-    branches: main
+  workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - name: build vscode
+    - name: build web
       run: |
-        git clone https://github.com/Microsoft/vscode/
-        cd vscode
-        yarn
+        git clone https://gitlab.gnome.org/GNOME/epiphany.git
+        cd epiphany
+        sudo apt-get build-dep -y epiphany-browser 
+        mkdir build && cd build
+        meson ..
+        ninja
+        sudo ninja install
+
