@@ -11,8 +11,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: build web
       run: |
+        dnf -y install wget
         wget  https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/31/Everything/source/tree/Packages/e/epiphany-3.34.1-1.fc31.src.rpm 
-        dnf builddep epiphany-3.34.1-1.fc31.src.rpm 
+        dnf -y builddep epiphany-3.34.1-1.fc31.src.rpm 
         git clone https://gitlab.gnome.org/GNOME/epiphany.git
         cd epiphany
         sudo apt-get build-dep -y epiphany-browser 
