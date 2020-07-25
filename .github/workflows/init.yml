@@ -6,12 +6,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    container: fedora:rawhide
     steps:
     - uses: actions/checkout@v2
     - name: build web
       run: |
-        sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
-        sudo apt-get -y update
+        wget  https://download-ib01.fedoraproject.org/pub/fedora/linux/releases/31/Everything/source/tree/Packages/e/epiphany-3.34.1-1.fc31.src.rpm 
+        dnf builddep epiphany-3.34.1-1.fc31.src.rpm 
         git clone https://gitlab.gnome.org/GNOME/epiphany.git
         cd epiphany
         sudo apt-get build-dep -y epiphany-browser 
