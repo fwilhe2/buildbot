@@ -12,6 +12,7 @@ jobs:
     - name: build web
       run: |
         git clone https://gitlab.gnome.org/GNOME/epiphany.git
+        dnf -y install 'pkgconfig(hogweed)'
         cd epiphany
         mkdir build && cd build
         meson ..
